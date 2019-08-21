@@ -4,6 +4,8 @@ import logo from "../logo.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from "styled-components";
 import ButtonContainer from './Button';
+import { ProductConsumer } from '../context';
+import Cart from './Cart/Cart';
 
 export default class NavBar extends Component {
     render() {
@@ -25,15 +27,23 @@ https://www.iconfinder.com/Makoto_msk */
                     </Link>
                 </li>
             </ul>
+            <React.Fragment>
+            <ProductConsumer>
+                {(value)=>(
+
             <Link to="/cart" className="ml-auto">
                 <ButtonContainer>
                     <span className="mr-2">
-                    <FontAwesomeIcon icon="cart-plus" />
+                    <FontAwesomeIcon  icon="cart-plus" />
                     </span>
                
                  My Cart
+                 <span class='badge badge-warning' id='lblCartCount'>{value.cart.length}</span>
                 </ButtonContainer>
             </Link>
+                )}
+            </ProductConsumer>
+            </React.Fragment>
           </NavWrapper>
         )
     }
