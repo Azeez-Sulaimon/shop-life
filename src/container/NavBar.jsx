@@ -29,19 +29,49 @@ https://www.iconfinder.com/Makoto_msk */
             </ul>
             <React.Fragment>
             <ProductConsumer>
-                {(value)=>(
+                {(value)=>{
 
-            <Link to="/cart" className="ml-auto">
-                <ButtonContainer>
-                    <span className="mr-2">
-                    <FontAwesomeIcon  icon="cart-plus" />
-                    </span>
-               
-                 My Cart
-                 <span class='badge badge-warning' id='lblCartCount'>{value.cart.length}</span>
-                </ButtonContainer>
-            </Link>
-                )}
+                    const {cart} = value;
+                    
+                   
+                    if(cart.length === 0 ){
+                        return (
+                            <React.Fragment>
+                    <Link to="/cart" className="ml-auto">
+                    <ButtonContainer>
+                            <span className="mr-2">
+                            <FontAwesomeIcon  icon="cart-plus" />
+                            </span>
+                       
+                         My Cart
+                         <span className='badge badge-warning counter' 
+                         id='lblCartCount'>{cart.length}</span>
+                    </ButtonContainer>
+                    </Link>
+                    </React.Fragment>
+
+                        )
+                    } else {
+                      return  ( <React.Fragment>
+                    <Link to="/cart" className="ml-auto">
+                    <ButtonContainer>
+                            <span className="mr-2">
+                            <FontAwesomeIcon  icon="cart-plus" />
+                            </span>
+                       
+                         My Cart
+                         <span className='badge badge-warning' 
+                         id='lblCartCount'>{cart.length}</span>
+                    </ButtonContainer>
+                    </Link>
+                    </React.Fragment>
+                      )
+                    }
+                   
+
+                  
+            
+                }}
             </ProductConsumer>
             </React.Fragment>
           </NavWrapper>
@@ -56,4 +86,5 @@ background: var(--mainBlue);
     font-size: 1.3rem;
     text-transform: capitalize;
 }
+
 `
